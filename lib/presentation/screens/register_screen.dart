@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:bloc_cubits_test/presentation/widgets/widgets.dart';
 
 class RegisterScreen extends StatelessWidget {
   const RegisterScreen({super.key});
@@ -23,22 +24,41 @@ class _RegisterView extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              const FlutterLogo(size: 500),
-              TextFormField(),
-              TextFormField(),
-              TextFormField(),
-              TextFormField(),
+            children:[
+              FlutterLogo(size: 100),
+
+              _RegisterForm(),
               SizedBox(height: 20),
-              FilledButton.tonalIcon(
-                onPressed: () {},
-                icon: const Icon(Icons.save),
-                label: const Text('Crear usuario'),
-              ),
             ],
           ),
         ),
       ),
+    );
+  }
+}
+
+
+class _RegisterForm extends StatelessWidget {
+  const _RegisterForm();
+
+  @override
+  Widget build(BuildContext context) {
+    return Form(
+      child:Column(
+        children: [
+         CustomTextFormField(label: 'Nombre de usuario',),
+          SizedBox(height: 10),
+          CustomTextFormField(label: 'Correo electrónico',),
+          SizedBox(height: 10),
+          CustomTextFormField(label: 'Contraseña',obscureText: true,),
+          
+          FilledButton.tonalIcon(
+            onPressed:(){},
+            icon:const Icon(Icons.save),
+            label:const Text('Crear usuario'),
+          )
+        ]
+      )
     );
   }
 }
