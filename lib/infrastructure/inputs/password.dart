@@ -1,33 +1,34 @@
 import 'package:formz/formz.dart';
 
 // Define input validation errors
-enum UsernameError { empty, length }
+enum PasswordError { empty, length }
 
 // Extend FormzInput and provide the input type and error type.
-class Username extends FormzInput<String,UsernameError> {
+class Password extends FormzInput<String,PasswordError> {
   // Call super.pure to represent an unmodified form input.
-  const Username.pure() : super.pure('');
+  const Password.pure() : super.pure('');
 
   // Call super.dirty to represent a modified form input.
-  const Username.dirty(String value) : super.dirty(value);
+  const Password.dirty(String value) : super.dirty(value);
 
   String? get errorMessage{
     if(isValid||isPure) return null;
-    if(displayError == UsernameError.empty) return 'Campo requerido';
-    if(displayError == UsernameError.length) return 'Minimo 6 caracteres';
+    if(displayError == PasswordError.empty) return 'Campo requerido';
+    if(displayError == PasswordError.length) return 'Minimo 6 caracteres';
     return null;
   }
 
+
   // Override validator to handle validating a given input value.
   @override
-  UsernameError? validator(String value) {
+  PasswordError? validator(String value) {
 
     if (value.isEmpty || value.trim().isEmpty) {
-      return UsernameError.empty;
+      return PasswordError.empty;
     }
 
     if (value.length < 6) {
-      return UsernameError.length;
+      return PasswordError.length;
     }
 
     return null;
